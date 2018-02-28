@@ -153,7 +153,7 @@ Component.Dialog = Vue.extend({
             methods: {
                 open(owner){
                     this.model = JSON.parse(JSON.stringify(owner.model));
-                    this.config = owner.actionSet[owner.defActionSet];
+                    this.config = owner.propSet[owner.defPropSet];
                     this.owner = owner;
                     $(this.$el).dialog("open");
                 },
@@ -181,18 +181,20 @@ Component.ImageAndTextCpt = Vue.extend({
             },
             data(){
                 return {
-                    actionSet: {
+                    propSet: {
                         0: {
                             image: {type: 'Image'},
                             text: {
                                 type: 'RichText', style: {
+                                    position: 'absolute',
                                     height: '100px',
+                                    width: '200px',
                                 }
                             },
                         },
                         1: {},
                     },
-                    defActionSet: 0,
+                    defPropSet: 0,
                 }
             },
             methods: {},
@@ -202,7 +204,7 @@ Component.ImageAndTextCpt = Vue.extend({
 });
 
 Component.ImageListCpt = Vue.extend({
-    template: '<div class="imageAndTextCpt"><div><img :src="model.image" :style="model.imageStyle"/></div>{{model.text}}</div>',
+    template: '<div class="ImageListCpt" ><div style="float:left"  :style="model.style" v-for="image in model.images"><img :src="image.src" :style="image.style"/></div></div>',
     mixins: [
         {
             props: {
@@ -211,6 +213,41 @@ Component.ImageListCpt = Vue.extend({
                 }
             },
             methods: {},
+
+        }, common
+    ],
+});
+
+Component.SwiperCpt = Vue.extend({
+    template: '<div class="swiper-container swiper-container-horizontal" :style="model.style">' +
+    '<div class="swiper-wrapper">' +
+    '<div v-for="(image,index) in model.images" class="swiper-slide " ><img :src="image.src" :style="image.style">{{index}}</div>' +
+    '</div>' +
+    '<div class="swiper-button-next"></div>' +
+    '<div class="swiper-button-prev"></div>' +
+    '</div>',
+    mixins: [
+        {
+            props: {
+                model: {
+                    default: {},
+                }
+            },
+            methods: {},
+            mounted(){
+                //TODO 仅作为测试使用
+                setTimeout(() => {
+                    new Swiper('.swiper-container', {
+                        loop: true,
+
+                        // 如果需要前进后退按钮
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    })
+                });
+            },
 
         }, common
     ],

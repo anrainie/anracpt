@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="css/dependence/animate.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+
     <!-- <link rel="stylesheet" href="AA.css" /> -->
     <script src="js/dependence/vue.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/dependence/jquery.form.js"></script>
     <script src="js/dependence/jquery.SuperSlide.3.0.alpha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
     <script src="js/cpt.js"></script>
     <script>
         //组件配置单
@@ -20,19 +23,101 @@
             name: '图文组件', type: 1,
             data(){
                 return {
-                    text: '默认文本asdasdasdasdasdfasfasdfsadfaaaaaaaaaaaaaaaaaaaaaaavcxzvxzcvxzcvxzvzxvzxvzxvzx',
+                    text: '默认文本测试英文换行asdasdasdasdasdfasfasdfsadfaaaaaaaaaaaaaaaaaaaaaaavcxzvxzcvxzcvxzvzxvzxvzxvzx',
                     image: 'https://cn.vuejs.org/images/logo.png',
                     imageStyle: {
                         width: '100px',
                         height: '100px',
                     },
-                    style:{
-                        width:'200px',
+                    style: {
+                        width: '200px',
                     }
                 }
             },
             component: Component.ImageAndTextCpt,
-        }
+        },
+            {
+                name: '多图列表组件', type: 2,
+                data(){
+                    return {
+                        stype: {
+                            'margin-left': '10px'
+                        },
+                        images: [
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '100px',
+                                    height: '100px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '200px',
+                                    height: '100px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '250px',
+                                    height: '100px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '50px',
+                                    height: '100px',
+                                },
+                            },
+                        ]
+                    }
+                },
+                component: Component.ImageListCpt,
+            },
+            {
+                name: '图文组件', type: 1,
+                data(){
+                    return {
+                        images: [
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '100px',
+                                    height: '100px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '200px',
+                                    height: '300px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '250px',
+                                    height: '400px',
+                                },
+                            },
+                            {
+                                src: 'https://cn.vuejs.org/images/logo.png',
+                                style: {
+                                    width: '50px',
+                                    height: '100px',
+                                },
+                            },
+                        ],
+                        style: {
+                            width: '400px',
+                        }
+                    }
+                },
+                component: Component.SwiperCpt,
+            },
         ];
 
 

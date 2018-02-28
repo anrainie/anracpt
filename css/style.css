@@ -1,7 +1,15 @@
-.imageAndTextCpt{
-    float:left;
-    width:100px;
-    height:100px;
+.imageAndTextCpt {
+    float: left;
+    width: 100px;
+    height: 100px;
     background: #EFC;
+    overflow: hidden;
+}
+
+.imageListCpt {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #CEC;
     overflow: hidden;
 }
