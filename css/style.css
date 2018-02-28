@@ -13,3 +13,11 @@
     background: #CEC;
     overflow: hidden;
 }
+
+.swiperCpt{
+    float:left;
+    width:200px;
+    height:100px;
+    background:#CCE;
+    overflow:hidden;
+}

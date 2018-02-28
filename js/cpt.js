@@ -219,9 +219,9 @@ Component.ImageListCpt = Vue.extend({
 });
 
 Component.SwiperCpt = Vue.extend({
-    template: '<div class="swiper-container swiper-container-horizontal" :style="model.style">' +
+    template: '<div class="swiperCpt swiper-container swiper-container-horizontal" :style="model.style">' +
     '<div class="swiper-wrapper">' +
-    '<div v-for="(image,index) in model.images" class="swiper-slide " ><img :src="image.src" :style="image.style">{{index}}</div>' +
+    '<div v-for="(image,index) in model.images" class="swiper-slide "><img :src="image.src" :style="image.style">{{index}}</div>' +
     '</div>' +
     '<div class="swiper-button-next"></div>' +
     '<div class="swiper-button-prev"></div>' +
@@ -231,12 +231,22 @@ Component.SwiperCpt = Vue.extend({
             props: {
                 model: {
                     default: {},
-                }
+                },
             },
-            methods: {},
-            mounted(){
-                //TODO 仅作为测试使用
-                setTimeout(() => {
+            watch: {
+                'model.style.width'(w){
+                    new Swiper('.swiper-container', {
+                        loop: true,
+                        // 如果需要前进后退按钮
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    })
+                },
+            },
+            methods: {
+                init(){
                     new Swiper('.swiper-container', {
                         loop: true,
 
@@ -246,6 +256,13 @@ Component.SwiperCpt = Vue.extend({
                             prevEl: '.swiper-button-prev',
                         },
                     })
+
+                },
+            },
+            mounted(){
+                //TODO 仅作为测试使用
+                setTimeout(() => {
+                    this.init();
                 });
             },
 
