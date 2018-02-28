@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>拖拽测试</title>
+    <link rel="stylesheet" href="css/dependence/swiper.min.css">
+    <link rel="stylesheet" href="css/dependence/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="AA.css" /> -->
+    <script src="js/dependence/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/dependence/jquery.form.js"></script>
+    <script src="js/dependence/jquery.SuperSlide.3.0.alpha.js"></script>
+    <script src="js/cpt.js"></script>
+    <script>
+        //组件配置单
+        var config = [{
+            name: '图文组件', type: 1,
+            data(){
+                return {
+                    text: '默认文本asdasdasdasdasdfasfasdfsadfaaaaaaaaaaaaaaaaaaaaaaavcxzvxzcvxzcvxzvzxvzxvzxvzx',
+                    image: 'https://cn.vuejs.org/images/logo.png',
+                    imageStyle: {
+                        width: '100px',
+                        height: '100px',
+                    },
+                    style:{
+                        width:'200px',
+                    }
+                }
+            },
+            component: Component.ImageAndTextCpt,
+        }
+        ];
+
+
+        $(function () {
+            var p = Component.bind('#palette', Component.Palatte);
+            config.forEach(v => {
+                p.$props.items.push(v);
+            });
+
+
+            $("#panel").droppable({
+                drop: function (event, ui) {
+                    var c = config[parseInt(ui.draggable.attr('idx'))];
+                    if (c) {
+                        var p = Component.bind($(this), c.component);
+                        p.$props.model = c.data();
+                    }
+                }
+            });
+
+        });
+    </script>
+    <style>
+        #palette {
+            width: 10%;
+            height: 50%;
+            float: left;
+            background: #CCC;
+        }
+
+        #panel {
+            left: 10%;
+            width: 90%;
+            height: 50%;
+            float: right;
+            background: #EEE;
+        }
+    </style>
+</head>
+<body>
+<div id="palette">
+
+
+</div>
+<div id="panel">
+
+</div>
+
+<div id="dialog"></div>
+</body>
+
+</html>
